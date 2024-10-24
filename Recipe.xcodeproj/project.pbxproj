@@ -34,8 +34,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				RecipeTests/RecipeTests.swift,
-				RecipeUITests/RecipeUITests.swift,
-				RecipeUITests/RecipeUITestsLaunchTests.swift,
+				RecipeTests/RecipeUITests.swift,
+				RecipeTests/RecipeUITestsLaunchTests.swift,
 			);
 			target = 98684DAB2CC533BD000A9E97 /* Recipe */;
 		};
@@ -49,8 +49,8 @@
 		98684DE52CC5395A000A9E97 /* Exceptions for "Recipe" folder in "RecipeUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				RecipeUITests/RecipeUITests.swift,
-				RecipeUITests/RecipeUITestsLaunchTests.swift,
+				RecipeTests/RecipeUITests.swift,
+				RecipeTests/RecipeUITestsLaunchTests.swift,
 			);
 			target = 98684DC52CC533BE000A9E97 /* RecipeUITests */;
 		};

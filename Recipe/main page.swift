@@ -3,62 +3,62 @@
 import SwiftUI
 
 struct main_page: View {
+    @State private var isPresentingNewRecipe = false
+    @State private var recipes: [String] = []
+    
     var body: some View {
       
-                NavigationView {
+        NavigationView {
                     ZStack(alignment: .top) {
-                        Color(.systemGray3) // Extending the background color to the top
+                        Color(.systemGray6)
                             .edgesIgnoringSafeArea(.top)
-                            .frame(height: 30
-    ) // Height of the header
+                            .frame(height: 100)
 
                         VStack(spacing: 0) {
+                          
                             
-                            // Header area with light gray background and title text
                             HStack {
                                 Text("Food Recipes")
                                     .font(.system(size: 34, weight: .bold))
                                     .padding(.leading, 16)
                                 Spacer()
                             }
-                            .frame(height: 100) // Ensure the header area aligns with the background
-                            .background(Color(.systemGray6)) // To blend seamlessly with the ZStack's background
+                            .frame(height: 100)
+                            .background(Color(.systemGray6))
 
-                            Spacer()
+                            Spacer().frame(height:50)
                             
-                            // Central Icon using filled SF Symbol, styled to match the image more closely
-                            Image(systemName: "fork.knife.circle") // Using a filled SF Symbol
+                            Image(systemName: "fork.knife.circle")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 300, height: 300) // Adjusted size for better fit
+                                .frame(width: 300, height: 300)
                                 .foregroundColor(myColors.appOrange)
                                 .padding()
-                            
-                            // Empty State Message
+                                .padding()
+
                             Text("There’s no recipe yet")
-                                .font(.system(size: 34, weight: .bold))
+                                .font(.system(size: 24, weight: .bold))
                                 .multilineTextAlignment(.center)
-                            
                                 .padding()
-                                .padding()
-                            
                             Text("Please add your recipes")
-                                .font(.system(size: 22))
-                                .foregroundColor(.black)
+                                .font(.system(size: 18))
+                                .foregroundColor(.gray)
                                 .multilineTextAlignment(.center)
-                            
+
                             Spacer()
                         }
                     }
                     .toolbar {
-                        // Add button
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {
-                                // Action to add a new recipe
+                                isPresentingNewRecipe = true
                             }) {
                                 Image(systemName: "plus")
                                     .font(.system(size: 22, weight: .bold))
                                     .foregroundColor(myColors.appOrange)
+                            }
+                            .sheet(isPresented: $isPresentingNewRecipe) {
+                                AddNewRecipes()
                             }
                         }
                     }
