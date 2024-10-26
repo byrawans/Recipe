@@ -4,7 +4,7 @@ import SwiftUI
 struct RecipeApp: App {
     var body: some Scene {
         WindowGroup {
-            AddNewRecipes()
+            main_page()
         }
     }
 }

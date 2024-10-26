@@ -3,6 +3,7 @@ import SwiftUI
 struct AddNewRecipes: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showIngredientPopup = false // State to control sheet visibility
+    var ingredient: Ingredient
 
     var body: some View {
         NavigationView {
@@ -96,9 +97,34 @@ struct AddNewRecipes: View {
         .sheet(isPresented: $showIngredientPopup) {
             AddIngredientView(isPresented: .constant(true)) // The popup content view
         }
-    }
-}
+        
+        HStack {
+                    Text("\(ingredient.quantity)")
+                        .font(.headline)
+                        .foregroundColor(myColors.appOrange).bold()
+                    
+                    Text(ingredient.name)
+                        .font(.headline)
+                        .foregroundColor(myColors.appOrange).bold()
+                    
+                    Spacer()
+                    
+            Text(ingredient.measurement).frame(width: 90,height:29 )                         .padding(.horizontal, 7)
+                        .padding(.vertical, 2)
+                        .background(myColors.appOrange)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+               
+        .padding()
+        .background(Color(.systemGray5)).frame(width:358, height: 52)
+        .cornerRadius(8)
+        .padding(.horizontal)
+            }
+        }
+        
+
 
 #Preview {
-    AddNewRecipes()
+    AddNewRecipes(ingredient: Ingredient(quantity: 1, name: "plasamic", measurement: "🥄spoon"))
 }

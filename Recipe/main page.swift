@@ -58,7 +58,7 @@ struct main_page: View {
                                     .foregroundColor(myColors.appOrange)
                             }
                             .sheet(isPresented: $isPresentingNewRecipe) {
-                                AddNewRecipes()
+                                AddNewRecipes(ingredient: Ingredient(quantity: 7, name: "paksmic", measurement: "spoon"))
                             }
                         }
                     }

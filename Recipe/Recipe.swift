@@ -1,14 +1,15 @@
 import Foundation
+
 struct Recipe: Identifiable {
-    var id = UUID()
+    let id = UUID()
     var title: String
     var description: String
-    var ingredients: [Ingredient]
+    var imageName: String
 }
 
 struct Ingredient: Identifiable {
-    var id = UUID()
+    let id = UUID()
+    var quantity: Int
     var name: String
     var measurement: String
-    var serving: Int
 }
