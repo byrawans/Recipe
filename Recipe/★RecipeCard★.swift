@@ -102,7 +102,7 @@ struct RecipeCard: View {
                     }
                 }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
         
         
     }

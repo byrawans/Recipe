@@ -8,17 +8,24 @@ struct ShowRecipeDetails: View {
             VStack(alignment: .leading) {
                 // Header with Back and Edit Button
                 HStack {
-                
-                    Spacer()
                     Button(action: {
                         // Edit action
                     }) {
                         Text(" Edit")
+                            .padding(.vertical, 1)
                             .foregroundColor(.orange)
                     }
+                    Spacer()
+                    Button(action: {
+                        // Edit action
+                    }) {
+                        Text("save ")
+                            .foregroundColor(.orange)  .padding(.vertical, 1)
+                    }
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                
+
+                .padding(.bottom)
                 
                 // Title Section
                 Text(recipe.title)
@@ -62,7 +69,7 @@ struct ShowRecipeDetails: View {
                         .padding(.horizontal)
                 }
                 .padding(.top)
-            }
+            }.navigationBarBackButtonHidden(true)
         }
     }
 
