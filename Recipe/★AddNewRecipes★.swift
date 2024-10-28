@@ -1,10 +1,15 @@
 import SwiftUI
+import SwiftData
+
 
 struct AddNewRecipes: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.modelContext) var modelContext
+    @State private var ingredient: [IngredientData] = [IngredientData(quantity: 0, name: "", measurement: "")]
     @State private var showIngredientPopup = false // State to control sheet visibility
-    var ingredient: Ingredient
-
+    @State var recepi_title: String = ""
+    @State var recepi_Description: String = ""
+    //  var ingredient: Ingredient
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 20) {
@@ -46,7 +51,7 @@ struct AddNewRecipes: View {
                     .fontWeight(.bold)
                     .padding(.horizontal)
 
-                TextField("Title", text: .constant(""))
+                TextField("Title", text: $recepi_title )
                     .padding()
                     .background(Color(.systemGray5))
                     .cornerRadius(8)
@@ -58,7 +63,7 @@ struct AddNewRecipes: View {
                     .padding(.horizontal)
                     .fontWeight(.bold)
 
-                TextField("Description", text: .constant(""))
+                TextField("Description", text: $recepi_Description)
                     .frame(alignment: .leading)
                     .padding()
                     .frame(width: 367, height: 130, alignment: .topLeading)
@@ -89,27 +94,28 @@ struct AddNewRecipes: View {
                 }
                 .foregroundColor(myColors.appOrange),
                 trailing: Button("Save") {
-                    // Action to save the recipe
+//                    MyLocalSorage.myValue=self.recepi_title
+                   
                 }
                 .foregroundColor(myColors.appOrange)
             )
         }
         .sheet(isPresented: $showIngredientPopup) {
-            AddIngredientView(isPresented: .constant(true)) // The popup content view
+            AddIngredientView(isPresented: .constant(false)) // The popup content view
         }
         
         HStack {
-                    Text("\(ingredient.quantity)")
+                    Text("quantity")
                         .font(.headline)
                         .foregroundColor(myColors.appOrange).bold()
                     
-                    Text(ingredient.name)
+                    Text("name")
                         .font(.headline)
                         .foregroundColor(myColors.appOrange).bold()
-                    
-                    Spacer()
-                    
-            Text(ingredient.measurement).frame(width: 90,height:29 )                         .padding(.horizontal, 7)
+//                    
+   Spacer()
+//                    
+            Text("measurment").frame(width: 90,height:29 )                         .padding(.horizontal, 7)
                         .padding(.vertical, 2)
                         .background(myColors.appOrange)
                         .foregroundColor(.white)
@@ -121,10 +127,18 @@ struct AddNewRecipes: View {
         .cornerRadius(8)
         .padding(.horizontal)
             }
+    
+    
+    
+    func initRecipe(recipeName: String, description: String, ing: [IngredientData]){
+        let newRecipe = RecipeData(title: recipeName, description: description,  ing: ing)
+        modelContext.insert(newRecipe)
+    }
+    
         }
         
 
 
 #Preview {
-    AddNewRecipes(ingredient: Ingredient(quantity: 1, name: "plasamic", measurement: "🥄spoon"))
+    AddNewRecipes()
 }

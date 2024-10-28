@@ -5,6 +5,7 @@ import SwiftUI
 struct main_page: View {
     @State private var isPresentingNewRecipe = false
     @State private var recipes: [String] = []
+   
     
     var body: some View {
       
@@ -52,13 +53,14 @@ struct main_page: View {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {
                                 isPresentingNewRecipe = true
+                                
                             }) {
                                 Image(systemName: "plus")
                                     .font(.system(size: 22, weight: .bold))
                                     .foregroundColor(myColors.appOrange)
                             }
                             .sheet(isPresented: $isPresentingNewRecipe) {
-                                AddNewRecipes(ingredient: Ingredient(quantity: 7, name: "paksmic", measurement: "spoon"))
+                                AddNewRecipes()
                             }
                         }
                     }

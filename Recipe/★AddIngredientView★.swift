@@ -6,6 +6,7 @@ struct AddIngredientView: View {
     @State private var measurement = "🥄Spoon"
     @State private var servingCount = 1
     let measurements = ["🥄Spoon", "🥛Cup"]
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -91,8 +92,8 @@ struct AddIngredientView: View {
             
             // Cancel and Add buttons
             HStack(spacing: 16) {
-                Button(action: {
-                    isPresented = false // Dismiss the popup
+                Button(action: { dismiss()
+                    isPresented = true // Dismiss the popup
                 }) {
                     Text("Cancel")
                         .frame(width:88, height: 20)
